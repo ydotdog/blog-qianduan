@@ -12,7 +12,7 @@
 
 ## 📂 目录结构
 
-*   `posts/`：**核心内容目录**。所有的文章 `.md` 文件和索引配置都在这里。
+*   `public/posts/`：**核心内容目录**。所有的文章 `.md` 文件和索引配置都在这里。
     *   `index.json`：文章清单（Manifest）。网站根据这个文件来决定显示哪些文章。
     *   `*.md`：具体的文章内容文件。
 *   `pages/`：页面组件 (Home, Archive, Post)。
@@ -25,9 +25,9 @@
 
 ### 1. 新增文章
 
-1.  **创建文件**：在 `posts` 文件夹内新建一个 Markdown 文件，例如 `my-new-post.md`。
+1.  **创建文件**：在 `public/posts` 文件夹内新建一个 Markdown 文件，例如 `my-new-post.md`。
 2.  **编写内容**：在文件中使用标准的 Markdown 语法写作。
-3.  **注册文章**：打开 `posts/index.json`，在数组中添加一个新的对象：
+3.  **注册文章**：打开 `public/posts/index.json`，在数组中添加一个新的对象：
 
 ```json
 {
@@ -43,14 +43,14 @@
 
 ### 2. 删除文章
 
-1.  打开 `posts/index.json`。
+1.  打开 `public/posts/index.json`。
 2.  找到你想删除的文章对应的 `{...}` 块。
 3.  将其删除并保存。
-4.  (可选) 你可以物理删除 `posts/` 文件夹下对应的 `.md` 文件，但只要它不在 `index.json` 中，网站就不会显示它。
+4.  (可选) 你可以物理删除 `public/posts/` 文件夹下对应的 `.md` 文件，但只要它不在 `index.json` 中，网站就不会显示它。
 
 ### 3. 修改文章链接 (URL)
 
-只需修改 `posts/index.json` 中对应文章的 `"slug"` 字段即可。不需要重命名 Markdown 文件。
+只需修改 `public/posts/index.json` 中对应文章的 `"slug"` 字段即可。不需要重命名 Markdown 文件。
 
 ---
 
@@ -73,4 +73,13 @@
 本项目是纯静态前端项目（SPA）。
 运行构建命令后（通常是 `npm run build`），将生成的 `dist` 或 `build` 文件夹内容上传到任何静态托管服务（如 Vercel, Netlify, GitHub Pages, 或你的 VPS Nginx 目录）即可。
 
-注意：如果你使用 Nginx，请配置 `try_files $uri /index.html;` 以支持单页应用的路由。
+**重要提示：** 
+由于这是单页应用（SPA），如果你使用 Nginx，必须在配置中添加 fallback 规则，否则刷新二级页面会报错 404：
+
+```nginx
+location / {
+    root   /var/www/your-blog;
+    index  index.html;
+    try_files $uri $uri/ /index.html;  # 关键配置
+}
+```
