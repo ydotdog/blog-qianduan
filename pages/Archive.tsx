@@ -91,7 +91,7 @@ const Archive: React.FC = () => {
                   {!query && (
                     <div className="mt-1 hidden group-hover:block animate-fade-in">
                        <span className="text-xs text-neutral-400 dark:text-neutral-600">
-                         {post.category} • {post.readingTime}
+                         {post.category}
                        </span>
                     </div>
                   )}

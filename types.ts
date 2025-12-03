@@ -5,8 +5,8 @@ export interface BlogPost {
   date: string;
   category: string;
   summary: string;
-  content: string; // Simplified markdown/text content
-  readingTime: string;
+  source?: string; // The filename of the markdown file (e.g. 'wealth.md')
+  content?: string; // Populated after fetching
 }
 
 export interface SearchResult {

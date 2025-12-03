@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Clock, Calendar } from 'lucide-react';
+import { ArrowLeft, Calendar } from 'lucide-react';
 import { BlogPost } from '../types';
 import { dataService } from '../services/dataService';
 
+declare global {
+  interface Window {
+    marked: {
+      parse: (text: string) => string;
+    };
+  }
+}
+
 const Post: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -15,7 +22,7 @@ const Post: React.FC = () => {
 
     dataService.getPostBySlug(slug).then(foundPost => {
       if (foundPost) {
-        setPost(foundPost);
+        setPost({ ...foundPost }); // Clone to trigger re-render
       } else {
         console.error("Post not found");
       }
@@ -42,6 +49,11 @@ const Post: React.FC = () => {
     );
   }
 
+  // Parse Markdown to HTML
+  const htmlContent = post.content && window.marked 
+    ? window.marked.parse(post.content) 
+    : post.content || '';
+
   return (
     <article className="animate-fade-in max-w-2xl mx-auto">
       {/* Back Link */}
@@ -59,10 +71,6 @@ const Post: React.FC = () => {
             <Calendar size={14} className="mr-1" />
             {post.date}
           </span>
-          <span className="flex items-center">
-            <Clock size={14} className="mr-1" />
-            {post.readingTime}
-          </span>
           <span className="bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded text-xs text-neutral-600 dark:text-neutral-300">
             {post.category}
           </span>
@@ -72,29 +80,14 @@ const Post: React.FC = () => {
         </h1>
       </header>
 
-      {/* Content - Simulating Markdown Rendering */}
-      <div className="prose prose-neutral dark:prose-invert prose-lg max-w-none 
+      {/* Content */}
+      <div 
+        className="prose prose-neutral dark:prose-invert prose-lg max-w-none 
         prose-headings:font-serif prose-headings:font-bold 
         prose-a:text-neutral-900 dark:prose-a:text-white prose-a:underline prose-a:decoration-neutral-300 dark:prose-a:decoration-neutral-600 hover:prose-a:decoration-black dark:hover:prose-a:decoration-white prose-a:underline-offset-4
-        prose-img:rounded-xl">
-        
-        {post.content.split('\n').map((line, index) => {
-          const trimmed = line.trim();
-          if (!trimmed) return <div key={index} className="h-4"></div>;
-          
-          if (trimmed.startsWith('### ')) {
-            return <h3 key={index} className="text-xl font-bold mt-8 mb-4">{trimmed.replace('### ', '')}</h3>;
-          }
-           if (trimmed.startsWith('**') && trimmed.endsWith('**')) {
-             return <strong key={index} className="block my-4 text-neutral-900 dark:text-white">{trimmed.replace(/\*\*/g, '')}</strong>
-           }
-           if (trimmed.match(/^\d\./)) {
-             return <div key={index} className="ml-4 my-2 font-medium">{trimmed}</div>
-           }
-
-          return <p key={index} className="mb-4 leading-relaxed text-neutral-800 dark:text-neutral-300">{trimmed}</p>;
-        })}
-      </div>
+        prose-img:rounded-xl"
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
+      />
     </article>
   );
 };
