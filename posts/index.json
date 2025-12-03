@@ -1,47 +1,11 @@
 [
   {
     "id": "1",
-    "slug": "wealth",
-    "title": "如何不靠运气致富",
-    "date": "2023-10-15",
-    "category": "财富",
-    "summary": "追求财富，而不是金钱或地位。财富是你睡觉时仍在为你赚钱的资产。",
-    "source": "wealth.md"
-  },
-  {
-    "id": "2",
-    "slug": "happiness",
-    "title": "幸福是一种技能",
-    "date": "2023-11-02",
-    "category": "生活哲学",
-    "summary": "幸福不是一种发生在你身上的事情，而是一种你可以学习的技能，一种你可以做出的选择。",
-    "source": "happiness.md"
-  },
-  {
-    "id": "3",
-    "slug": "reading",
-    "title": "阅读的艺术",
-    "date": "2023-12-10",
-    "category": "学习",
-    "summary": "阅读是你给自己大脑安装新软件的方式。读什么比读得快更重要。",
-    "source": "reading.md"
-  },
-  {
-    "id": "4",
-    "slug": "specific-knowledge",
-    "title": "建立你的专长",
-    "date": "2024-01-05",
-    "category": "职业",
-    "summary": "专长是那些无法通过培训获得这类知识。如果社会可以培训你，那么社会也可以培训别人来取代你。",
-    "source": "specific-knowledge.md"
-  },
-  {
-    "id": "5",
-    "slug": "leverage",
-    "title": "杠杆时代",
-    "date": "2024-02-20",
-    "category": "财富",
-    "summary": "在这个时代，一个人的产出可以无限放大。关键在于如何使用工具。",
-    "source": "leverage.md"
+    "slug": "hello-world",
+    "title": "欢迎来到我的博客",
+    "date": "2024-03-21",
+    "category": "日记",
+    "summary": "这是你的第一篇文章。你可以在 posts 文件夹中找到它，并按照 README 的说明添加更多内容。",
+    "source": "hello-world.md"
   }
 ]
