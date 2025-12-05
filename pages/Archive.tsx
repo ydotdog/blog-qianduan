@@ -13,8 +13,12 @@ const Archive: React.FC = () => {
   // Initial Load
   useEffect(() => {
     dataService.getAllPosts().then(data => {
-      setPosts(data);
-      setFilteredPosts(data);
+      // Sort by date descending (newest first)
+      const sortedData = [...data].sort((a, b) => 
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+      setPosts(sortedData);
+      setFilteredPosts(sortedData);
       setLoading(false);
     });
   }, []);
@@ -28,7 +32,11 @@ const Archive: React.FC = () => {
       }
       
       const results = await dataService.searchPosts(query);
-      setFilteredPosts(results);
+      // Sort search results by date descending
+      const sortedResults = [...results].sort((a, b) => 
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+      setFilteredPosts(sortedResults);
     };
 
     performSearch();
