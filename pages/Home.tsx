@@ -9,7 +9,10 @@ const Home: React.FC = () => {
   useEffect(() => {
     // Get all posts for the feed
     dataService.getAllPosts().then(data => {
-      setPosts(data);
+      // Sort by date descending (newest first) using string comparison
+      // This is more robust on mobile browsers (Safari) than new Date() parsing
+      const sortedData = [...data].sort((a, b) => b.date.localeCompare(a.date));
+      setPosts(sortedData);
     });
   }, []);
 

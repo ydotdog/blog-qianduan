@@ -7,5 +7,50 @@
     "category": "日记",
     "summary": "这是你的第一篇文章。你可以在 posts 文件夹中找到它，并按照 README 的说明添加更多内容。",
     "source": "hello-world.md"
+  },
+  {
+    "id": "2",
+    "slug": "leverage",
+    "title": "杠杆效应",
+    "date": "2024-02-28",
+    "category": "财富",
+    "summary": "给我一根足够长的杠杆和一个支点，我就能撬动地球。代码和媒体是新时代的杠杆。",
+    "source": "leverage.md"
+  },
+  {
+    "id": "3",
+    "slug": "specific-knowledge",
+    "title": "寻找专长",
+    "date": "2024-02-25",
+    "category": "智慧",
+    "summary": "专长通常具有高度的技术性或创造性。它不能被外包或自动化。",
+    "source": "specific-knowledge.md"
+  },
+  {
+    "id": "4",
+    "slug": "wealth",
+    "title": "追求财富",
+    "date": "2024-02-20",
+    "category": "财富",
+    "summary": "财富是你睡觉时仍在为你赚钱的资产。金钱是我们转移时间和财富的方式。",
+    "source": "wealth.md"
+  },
+  {
+    "id": "5",
+    "slug": "happiness",
+    "title": "幸福是缺席的欲望",
+    "date": "2024-02-14",
+    "category": "幸福",
+    "summary": "当你没有什么想要的时候，你的思绪就会平静下来，活在当下。这就是幸福。",
+    "source": "happiness.md"
+  },
+  {
+    "id": "6",
+    "slug": "reading",
+    "title": "读书的艺术",
+    "date": "2024-01-15",
+    "category": "智慧",
+    "summary": "与其读最新的商业畅销书，不如读那些经得起时间考验的书。",
+    "source": "reading.md"
   }
 ]
